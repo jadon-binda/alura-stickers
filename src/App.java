@@ -10,6 +10,7 @@ import java.util.Map;
 
 public class App {
     public static void main(String[] args) throws Exception {
+
         // fazer uma requisicao para a api e obter os top 250 filmes do IMDB
         String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/TopMovies.json";
         URI endereco = URI.create(url);
@@ -26,17 +27,19 @@ public class App {
         var generator = new StickerGenerator();
 
         for (Map<String,String> filme : listaDeFilmes) {
+            
             String ImageURL = filme.get("image");
             String titulo = filme.get("title");
-            String nomeArquivo = titulo + ".png";
+            String nomeArquivo = "saida/" + titulo + ".png";
+            
             InputStream inputStream = new URL(ImageURL).openStream();
             generator.criaImagem(inputStream, nomeArquivo);
 
             System.out.println(titulo);
+            System.out.println();
             // System.out.println("\u001b[43;1m\u001b[37;1m" + titulo + "\u001b[0m");
             // System.out.println("\u001b[45;1m\u001b[37;1m" + filme.get("image") + "\u001b[0m");
             // System.out.println("\u001b[45;1m\u001b[37;1m" + filme.get("imDbRating") + "\u001b[0m");
-            System.out.println();
         }
 
     }
